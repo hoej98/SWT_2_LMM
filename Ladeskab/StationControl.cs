@@ -20,7 +20,7 @@ namespace Ladeskab
             DoorOpen
         };
 
-        // Her mangler flere member variable
+        // Her mangler flere member variableee
         private LadeskabState _state;
         private IUsbCharger _charger = new UsbChargerSimulator();
         private int _oldId;
