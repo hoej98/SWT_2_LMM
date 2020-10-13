@@ -7,7 +7,7 @@ class Program
         static void Main(string[] args)
         {
         // Assemble your system here from all the classes
-        // Mikkel er idiot tester1234
+        // Mikkel er idiot tester12345
         Door door = new Door();
         Display display = new Display();
         RFIDReader rfidReader = new RFIDReader();
