@@ -11,6 +11,7 @@ class Program
         Display display = new Display();
         RFIDReader rfidReader = new RFIDReader();
         UsbChargerSimulator usbCharger = new UsbChargerSimulator();
+        StationControl stationControl = new StationControl(door, rfidReader);
 
 
             bool finish = false;

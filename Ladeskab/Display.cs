@@ -13,7 +13,7 @@ namespace Ladeskab
 
         public void showInputRfid()
         {
-            Console.WriteLine("please input RFID");   
+            Console.WriteLine("Press 'R' to input RFID");   
         }
 
         public void showRFIDError()

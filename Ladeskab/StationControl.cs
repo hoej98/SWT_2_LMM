@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DoorInterface;
+using RFIDInterface;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,21 +22,39 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IUsbCharger _charger;
+        private IUsbCharger _charger = new UsbChargerSimulator();
         private int _oldId;
         private Door _door = new Door();
         private Display _display = new Display();
         private RFIDReader _rfidReader;
+        
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
+        public bool dooropen;
 
-        public StationControl()
+        public StationControl(IDoor door, IRFID rfid)
         {
-            _charger = new UsbChargerSimulator();
-            //_display = new Display();
-            //_door = new Door();
-            //_rfidReader = new RFIDReader();
-    }
+            door.DoorChangedEvent += handleDoorChanged;
+            rfid.RFIDChangedEvent += handleRFIDChanged;
+        }
+
+        public void handleDoorChanged(object sender, DoorEventArgs e)
+        {
+            if (e.DoorOpen)
+            {
+                doorOpenedMessage();
+            }
+            else
+            {
+                DoorClosedMessage();
+            }
+        }
+
+        public void handleRFIDChanged(object sender, RFIDEventArgs e)
+        {
+            RfidDetected(e.RFID_ID);
+           
+        }
         // Her mangler constructor
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
@@ -91,16 +111,15 @@ namespace Ladeskab
             }
         }
 
-        public void DoorOpened()
+        public void doorOpenedMessage()
         {
             _display.showConnectPhone();
         }
 
-        public void DoorClosed()
+        public void DoorClosedMessage()
         {
             _display.showInputRfid();
         }
 
-        // Her mangler de andre trigger handlere
     }
 }

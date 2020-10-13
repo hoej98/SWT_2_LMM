@@ -1,26 +1,32 @@
-﻿using System;
+﻿using DoorInterface;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ladeskab
 {
-    class Door
+    class Door : IDoor
     {
-        private StationControl _stationControl = new StationControl();
+        public event EventHandler<DoorEventArgs> DoorChangedEvent;
+
         public void LockDoor()
         {
-            Console.WriteLine("Vi er lort");
         }
         public void UnlockDoor()
         {
         }
         public void OnDoorOpen()
         {
-            _stationControl.DoorOpened();
+            OnDoorChanged(new DoorEventArgs { DoorOpen = true });
         }
         public void OnDoorClose()
         {
-            _stationControl.DoorClosed();
+            OnDoorChanged(new DoorEventArgs { DoorOpen = false});
+        }
+
+        protected virtual void OnDoorChanged(DoorEventArgs e)
+        {
+            DoorChangedEvent?.Invoke(this, e);
         }
 
     }
