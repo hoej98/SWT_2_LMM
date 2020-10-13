@@ -5,7 +5,7 @@ namespace UsbSimulator
 {
     public class UsbChargerSimulator : IUsbCharger
     {
-        // Constants og du er lort mikkel
+        // Constants
         private const double MaxCurrent = 500.0; // mA
         private const double FullyChargedCurrent = 2.5; // mA
         private const double OverloadCurrent = 750; // mA
