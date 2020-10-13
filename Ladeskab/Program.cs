@@ -14,12 +14,17 @@ class Program
         UsbChargerSimulator usbCharger = new UsbChargerSimulator();
         StationControl stationControl = new StationControl(door, rfidReader);
 
+        System.Console.WriteLine("Indtast 'E' for 'Exit'\n" +
+                                 "Indtast 'O' for 'Open door'\n" +
+                                 "Indtast 'C' for 'Close door'\n" +
+                                 "Indtast 'K' for 'Connect phone'\n" +
+                                 "Indtast 'R' for 'RFID'");
 
-            bool finish = false;
+        bool finish = false;
             do
             {
                 string input;
-                System.Console.WriteLine("Indtast E, O, C, K(connect phone), R: ");
+                System.Console.WriteLine("Indtast E, O, C, K, R: ");
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
 
@@ -41,13 +46,13 @@ class Program
                     bool isconnect = usbCharger.Connected;
                     while (isconnect == false)
                     {
-                        Console.WriteLine("Phone not connected");
+                        Console.WriteLine("Telefon ikke tilsluttet");
                         break;
                     }
-                        Console.WriteLine("Phone connected. Please close the door");
+                        Console.WriteLine("Telefon tilsluttet. Luk venligst døren");
                         break;
                     case 'R':
-                        System.Console.WriteLine("Indtast RFID id: ");
+                        System.Console.WriteLine("Indtast RFID: ");
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);

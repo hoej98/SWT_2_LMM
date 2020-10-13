@@ -8,12 +8,12 @@ namespace Ladeskab
     {
         public void showConnectPhone()
         {
-            Console.WriteLine("Connect your phone!");
+            Console.WriteLine("Tilslut din telefon");
         }
 
         public void showInputRfid()
         {
-            Console.WriteLine("Press 'R' to input RFID");   
+            Console.WriteLine("Tryk 'R' for at intaste RFID");   
         }
 
         public void showRFIDError()
