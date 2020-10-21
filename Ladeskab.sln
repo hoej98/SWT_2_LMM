@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ladeskab", "Ladeskab\Ladesk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LadeskabConsoleApp", "LadeskabConsoleApp\LadeskabConsoleApp.csproj", "{6AE27C53-1295-4761-B736-65154D502692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LadeskabTest", "LadeskabTest\LadeskabTest.csproj", "{EB837C58-9150-4057-B667-CC3913363567}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6AE27C53-1295-4761-B736-65154D502692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AE27C53-1295-4761-B736-65154D502692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AE27C53-1295-4761-B736-65154D502692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB837C58-9150-4057-B667-CC3913363567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB837C58-9150-4057-B667-CC3913363567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB837C58-9150-4057-B667-CC3913363567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB837C58-9150-4057-B667-CC3913363567}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

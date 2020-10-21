@@ -1,19 +1,22 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ladeskab
 {
-    class Display
+    public class Display
     {
+        public string msg;
         public void showConnectPhone()
         {
-            Console.WriteLine("Tilslut din telefon");
+            msg = "Tilslut din telefon";
+            Console.WriteLine(msg);
         }
 
         public void showInputRfid()
         {
-            Console.WriteLine("Tryk 'R' for at intaste RFID");   
+            Console.WriteLine("Tryk 'R' for at intaste RFID");
         }
 
         public void showRFIDError()
