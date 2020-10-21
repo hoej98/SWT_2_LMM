@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Ladeskab
 {
+    //Interface for IDoor
     public class Door : IDoor
     {
         public event EventHandler<DoorEventArgs> DoorChangedEvent;
