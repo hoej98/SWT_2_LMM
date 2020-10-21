@@ -9,6 +9,7 @@ namespace LadeskabTest
     public class TestLadeskab
     {
 
+// Finished
 #region DisplayTest
         [Test]
         public void ShowConnectPhone_IsCorrect()
@@ -102,6 +103,7 @@ namespace LadeskabTest
 
         #endregion
 
+// Not Finished
 #region DoorTest
         [Test]
         public void OnDoorOpen_IsCorrect()
@@ -116,6 +118,19 @@ namespace LadeskabTest
             //Assert.That(uut.msg == "Tilslut din telefon");
         }
         #endregion
+
+// Not Finished
+#region RFIDReaderTest
+        #endregion
+
+//Not Finished
+#region IUsbCharger
+#endregion
+
+//Not Finished
+#region StationControlTest
+#endregion
+
 
     }
 }
