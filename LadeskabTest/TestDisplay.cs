@@ -1,15 +1,12 @@
 using NUnit.Framework;
 using Ladeskab;
 using System;
-using DoorInterface;
 
 namespace LadeskabTest
 {
     [TestFixture]
-
-    public class TestLadeskab
+    public class TestDisplay
     {
-
         // Finished
         #region DisplayTest
         [Test]
@@ -87,62 +84,5 @@ namespace LadeskabTest
             Assert.That(uut.msg == "Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
         }
         #endregion
-
-        // Not Finished
-        #region DoorTest
-        [Test]
-        public void OnDoorOpen_EventFired()
-        {
-            // arrange
-            var uut = new Door();
-            DoorEventArgs receivedEventArgs = null;
-
-            uut.DoorChangedEvent +=
-                (o, args) =>
-                {
-                    receivedEventArgs = args;
-                };
-
-            //act
-            uut.OnDoorOpen();
-
-            //Assert
-            Assert.That(receivedEventArgs, Is.Not.Null);
-        }
-
-        [Test]
-        public void OnDoorClose_EventFired()
-        {
-            // arrange
-            var uut = new Door();
-            DoorEventArgs receivedEventArgs = null;
-
-            uut.DoorChangedEvent +=
-                (o, args) =>
-                {
-                    receivedEventArgs = args;
-                };
-
-            //act
-            uut.OnDoorClose();
-
-            //Assert
-            Assert.That(receivedEventArgs, Is.Not.Null);
-        }
-        #endregion
-
-        // Not Finished
-        #region RFIDReaderTest
-        #endregion
-
-        //Not Finished
-        #region IUsbCharger
-        #endregion
-
-        //Not Finished
-        #region StationControlTest
-        #endregion
-
-
     }
 }
