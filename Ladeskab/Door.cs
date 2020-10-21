@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ladeskab
 {
-    class Door : IDoor
+    public class Door : IDoor
     {
         public event EventHandler<DoorEventArgs> DoorChangedEvent;
 
@@ -21,7 +21,7 @@ namespace Ladeskab
         }
         public void OnDoorClose()
         {
-            OnDoorChanged(new DoorEventArgs { DoorOpen = false});
+            OnDoorChanged(new DoorEventArgs { DoorOpen = false });
         }
 
         protected virtual void OnDoorChanged(DoorEventArgs e)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ladeskab
 {
-    class RFIDReader : IRFID
+    public class RFIDReader : IRFID
     {
         public event EventHandler<RFIDEventArgs> RFIDChangedEvent;
         public void OnRfidRead(int id)

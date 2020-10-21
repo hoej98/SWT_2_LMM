@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ladeskab
 {
-    class Display
+    public class Display
     {
         public void showConnectPhone()
         {
@@ -13,7 +13,7 @@ namespace Ladeskab
 
         public void showInputRfid()
         {
-            Console.WriteLine("Press 'R' to input RFID");   
+            Console.WriteLine("Press 'R' to input RFID");
         }
 
         public void showRFIDError()
