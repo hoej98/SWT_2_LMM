@@ -10,8 +10,8 @@ namespace LadeskabTest
     public class TestLadeskab
     {
 
-// Finished
-#region DisplayTest
+        // Finished
+        #region DisplayTest
         [Test]
         public void ShowConnectPhone_IsCorrect()
         {
