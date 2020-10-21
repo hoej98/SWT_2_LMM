@@ -119,17 +119,33 @@ namespace LadeskabTest
         }
         #endregion
 
-// Not Finished
+        // Not Finished
 #region RFIDReaderTest
+
+        [Test]
+        public void ShowConnectPhone_IsCorrect()
+        {
+            // arrange
+            var uut = new Display();
+
+            //act
+            uut.showConnectPhone();
+
+            //uut.Add(7, 17);
+
+            //Assert
+            Assert.That(uut.msg == "Tilslut din telefon");
+        }
+
+#endregion
+
+        //Not Finished
+        #region IUsbCharger
         #endregion
 
-//Not Finished
-#region IUsbCharger
-#endregion
-
-//Not Finished
-#region StationControlTest
-#endregion
+        //Not Finished
+        #region StationControlTest
+        #endregion
 
 
     }
