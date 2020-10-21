@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Ladeskab;
 using System;
+using DoorInterface;
 
 namespace LadeskabTest
 {
@@ -43,16 +44,43 @@ namespace LadeskabTest
 
 
         [Test]
-        public void OnDoorOpen_IsCorrect()
+        public void OnDoorOpen_EventFired()
         {
             // arrange
             var uut = new Door();
+            DoorEventArgs receivedEventArgs = null;
+
+            uut.DoorChangedEvent +=
+                (o, args) =>
+                {
+                    receivedEventArgs = args;
+                };
 
             //act
-            //uut.showConnectPhone();
+            uut.OnDoorOpen();
 
             //Assert
-            //Assert.That(uut.msg == "Tilslut din telefon");
+            Assert.That(receivedEventArgs, Is.Not.Null);
+        }
+
+        [Test]
+        public void OnDoorClose_EventFired()
+        {
+            // arrange
+            var uut = new Door();
+            DoorEventArgs receivedEventArgs = null;
+
+            uut.DoorChangedEvent +=
+                (o, args) =>
+                {
+                    receivedEventArgs = args;
+                };
+
+            //act
+            uut.OnDoorClose();
+
+            //Assert
+            Assert.That(receivedEventArgs, Is.Not.Null);
         }
 
     }
