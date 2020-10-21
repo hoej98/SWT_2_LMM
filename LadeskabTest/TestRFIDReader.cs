@@ -13,7 +13,7 @@ namespace LadeskabTest
         [Test]
         public void OnRfidRead_EventFired()
         {
-            // arrange
+            // Arrange
             var uut = new RFIDReader();
             RFIDEventArgs receivedEventArgs = null;
 
@@ -23,10 +23,10 @@ namespace LadeskabTest
                     receivedEventArgs = args;
                 };
 
-            //act
-            uut.OnRfidRead();
+            // Act
+            uut.OnRfidRead(1);
 
-            //Assert
+            // Assert
             Assert.That(receivedEventArgs, Is.Not.Null);
         }
 
