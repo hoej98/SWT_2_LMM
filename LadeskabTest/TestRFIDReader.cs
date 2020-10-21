@@ -9,6 +9,7 @@ namespace LadeskabTest
     public class TestRFIDReader
     {
         // Not Finished
+
         #region RFIDReaderTest
         [Test]
         public void OnRfidRead_EventFired()
