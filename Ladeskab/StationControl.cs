@@ -13,7 +13,7 @@ namespace Ladeskab
     public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        private enum LadeskabState
+        public enum LadeskabState
         {
             Available,
             Locked,
@@ -21,8 +21,8 @@ namespace Ladeskab
         };
 
         // Her mangler flere member variableeee
-        private LadeskabState _state;
-        private IUsbCharger _charger = new UsbChargerSimulator();
+        public LadeskabState _state { get; set; }
+        public IUsbCharger _charger = new UsbChargerSimulator();
         private int _oldId;
         private Door _door = new Door();
         private Display _display = new Display();
