@@ -83,6 +83,21 @@ namespace LadeskabTest
             //Assert
             Assert.That(uut.msg == "Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
         }
+
+        [Test]
+        public void ShowConfirmation_IsCorrect()
+        {
+            // arrange
+            var uut = new Display();
+
+            //act
+            uut.showConfirmation();
+
+            //uut.Add(7, 17);
+
+            //Assert
+            Assert.That(uut.msg == "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+        }
         #endregion
     }
 }
