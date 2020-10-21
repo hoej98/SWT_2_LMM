@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using Ladeskab;
 using System;
+using System.ComponentModel;
 using DoorInterface;
+using Moq;
 
 namespace LadeskabTest
 {
@@ -33,7 +35,7 @@ namespace LadeskabTest
         [Test]
         public void OnDoorClose_EventFired()
         {
-            // arrange
+            // Arrange
             var uut = new Door();
             DoorEventArgs receivedEventArgs = null;
 
@@ -43,11 +45,37 @@ namespace LadeskabTest
                     receivedEventArgs = args;
                 };
 
-            //act
+            // Act
             uut.OnDoorClose();
 
-            //Assert
+            // Assert
             Assert.That(receivedEventArgs, Is.Not.Null);
+        }
+
+        [Test]
+        public void LockDoor_IsCorrect()
+        {
+            // Arrange
+            var uut = new Door();
+
+            // Act
+            uut.LockDoor();
+
+            // Assert
+            Assert.That(uut._doorLocked == true);
+        }
+
+        [Test]
+        public void UnlockDoor_IsCorrect()
+        {
+            // Arrange
+            var uut = new Door();
+
+            // Act
+            uut.UnlockDoor();
+
+            // Assert
+            Assert.That(uut._doorLocked == false);
         }
         #endregion
     }

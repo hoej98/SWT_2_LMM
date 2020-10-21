@@ -9,12 +9,15 @@ namespace Ladeskab
     public class Door : IDoor
     {
         public event EventHandler<DoorEventArgs> DoorChangedEvent;
+        public bool _doorLocked { get; set; }
 
         public void LockDoor()
         {
+            _doorLocked = true;
         }
         public void UnlockDoor()
         {
+            _doorLocked = false;
         }
         public void OnDoorOpen()
         {

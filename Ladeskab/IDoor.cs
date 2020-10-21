@@ -8,7 +8,7 @@ namespace DoorInterface
     public class DoorEventArgs : EventArgs
     {
         public bool DoorOpen { get; set; }
-}
+    }
 
     public interface IDoor
     {
