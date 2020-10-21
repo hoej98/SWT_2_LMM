@@ -37,7 +37,7 @@ namespace Ladeskab
         {
             door.DoorChangedEvent += handleDoorChanged;
             rfid.RFIDChangedEvent += handleRFIDChanged;
-            this._charger = new UsbChargerSimulator();
+            this._charger = Usb;
         }
 
         public void handleDoorChanged(object sender, DoorEventArgs e)
@@ -66,7 +66,7 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    if (_charger.Connected == true)
                     {
                         _charger.StartCharge();
                         _door.LockDoor();
@@ -82,8 +82,8 @@ namespace Ladeskab
                     else
                     {
                         _display.showConnectionError();
+                        _state = LadeskabState.Available;
                     }
-
                     break;
 
                 case LadeskabState.DoorOpen:
