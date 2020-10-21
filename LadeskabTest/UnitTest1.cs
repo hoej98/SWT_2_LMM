@@ -24,18 +24,18 @@ namespace LadeskabTest
         }
 
         [Test]
-        public void ShowConnectPhone_IsCorrect()
+        public void ShowInputRfid_IsCorrect()
         {
             // arrange
             var uut = new Display();
 
             //act
-            uut.showConnectPhone();
+            uut.showInputRfid();
 
             //uut.Add(7, 17);
 
             //Assert
-            Assert.That(uut.msg == "Tilslut din telefon");
+            Assert.That(uut.msg == "Tryk 'R' for at indtaste RFID");
         }
 
 

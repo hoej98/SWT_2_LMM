@@ -16,7 +16,8 @@ namespace Ladeskab
 
         public void showInputRfid()
         {
-            Console.WriteLine("Tryk 'R' for at intaste RFID");
+            msg = "Tryk 'R' for at indtaste RFID";
+            Console.WriteLine(msg);
         }
 
         public void showRFIDError()
