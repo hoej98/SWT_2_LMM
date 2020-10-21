@@ -13,14 +13,47 @@ namespace LadeskabTest
 
         #region StationControlTest
 
+        //[Test]
+        //public void RfidDetected_stateAvailable_isCorrect()
+        //{
+        //    // Arrange
+        //    var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator());
+
+        //    // Act
+        //    uut._charger.Connected = true;
+        //    uut._state = StationControl.LadeskabState.Available;
+        //    uut.RfidDetected(1);
+
+        //    // Assert
+        //    Assert.That(uut._state == StationControl.LadeskabState.Locked);
+        //}
+
+
+        //[Test]
+        //public void RfidDetected_stateAvailable_phoneNotConnected_isCorrect()
+        //{
+        //    // Arrange
+        //    var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator());
+
+        //    // Act
+        //    uut._charger.Connected = false;
+        //    uut._state = StationControl.LadeskabState.Available;
+        //    uut.RfidDetected(1);
+
+        //    // Assert
+        //    Assert.That(uut._state == StationControl.LadeskabState.Available);
+        //}
+
         [Test]
-        public void RfidDetected_stateAvailable_isCorrect()
+        public void RfidDetected_Available_ConnectedTrue_isCorrectFAKES()
         {
             // Arrange
-            var uut = new StationControl(new Door(), new RFIDReader());
+            IUsbCharger fake = Substitute.For<IUsbCharger>();
+            fake.Connected.Returns(true);
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fake);
 
             // Act
-            uut._charger.Connected = true;
             uut._state = StationControl.LadeskabState.Available;
             uut.RfidDetected(1);
 
@@ -28,33 +61,16 @@ namespace LadeskabTest
             Assert.That(uut._state == StationControl.LadeskabState.Locked);
         }
 
-
         [Test]
-        public void RfidDetected_stateAvailable_phoneNotConnected_isCorrect()
+        public void RfidDetected_Available_ConnectedFalse_isCorrectFAKES()
         {
             // Arrange
             IUsbCharger fake = Substitute.For<IUsbCharger>();
-            var uut = new StationControl(new Door(), new RFIDReader());
+            fake.Connected.Returns(false);
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fake);
 
             // Act
-            uut._charger.Connected = false;
-            uut._state = StationControl.LadeskabState.Available;
-            uut.RfidDetected(1);
-
-            // Assert
-            Assert.That(uut._state == StationControl.LadeskabState.Available);
-        }
-
-
-        [Test]
-        public void RfidDetected_stateAvailable_isCorrectFAKES()
-        {
-            // Arrange
-            IUsbCharger fake = Substitute.For<IUsbCharger>();
-            var uut = new StationControl(new Door(), new RFIDReader());
-
-            // Act
-            uut._charger.Connected = true;
             uut._state = StationControl.LadeskabState.Available;
             uut.RfidDetected(1);
 
