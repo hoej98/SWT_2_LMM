@@ -39,5 +39,21 @@ namespace LadeskabTest
         }
 
 
+
+
+
+        [Test]
+        public void OnDoorOpen_IsCorrect()
+        {
+            // arrange
+            var uut = new Door();
+
+            //act
+            //uut.showConnectPhone();
+
+            //Assert
+            //Assert.That(uut.msg == "Tilslut din telefon");
+        }
+
     }
 }
