@@ -9,6 +9,9 @@ namespace LadeskabTest
 
     public class TestLadeskab
     {
+
+// Finished
+#region DisplayTest
         [Test]
         public void ShowConnectPhone_IsCorrect()
         {
@@ -39,10 +42,54 @@ namespace LadeskabTest
             Assert.That(uut.msg == "Tryk 'R' for at indtaste RFID");
         }
 
+        [Test]
+        public void ShowRFIDError_IsCorrect()
+        {
+            // arrange
+            var uut = new Display();
 
+            //act
+            uut.showRFIDError();
 
+            //uut.Add(7, 17);
 
+            //Assert
+            Assert.That(uut.msg == "Forkert RFID tag");
+        }
 
+        [Test]
+        public void ShowRemovePhone_IsCorrect()
+        {
+            // arrange
+            var uut = new Display();
+
+            //act
+            uut.showRemovePhone();
+
+            //uut.Add(7, 17);
+
+            //Assert
+            Assert.That(uut.msg == "Tag din telefon ud af skabet og luk døren");
+        }
+
+        [Test]
+        public void ShowConnectionError_IsCorrect()
+        {
+            // arrange
+            var uut = new Display();
+
+            //act
+            uut.showConnectionError();
+
+            //uut.Add(7, 17);
+
+            //Assert
+            Assert.That(uut.msg == "Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+        }
+        #endregion
+
+        // Not Finished
+        #region DoorTest
         [Test]
         public void OnDoorOpen_EventFired()
         {
@@ -82,6 +129,20 @@ namespace LadeskabTest
             //Assert
             Assert.That(receivedEventArgs, Is.Not.Null);
         }
+        #endregion
+
+        // Not Finished
+        #region RFIDReaderTest
+        #endregion
+
+        //Not Finished
+        #region IUsbCharger
+        #endregion
+
+        //Not Finished
+        #region StationControlTest
+        #endregion
+
 
     }
 }

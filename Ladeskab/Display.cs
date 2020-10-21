@@ -22,22 +22,26 @@ namespace Ladeskab
 
         public void showRFIDError()
         {
-            Console.WriteLine("Forkert RFID tag");
+            msg = "Forkert RFID tag";
+            Console.WriteLine(msg);
         }
 
         public void showRemovePhone()
         {
-            Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+            msg = "Tag din telefon ud af skabet og luk døren";
+            Console.WriteLine(msg);
         }
 
         public void showConnectionError()
         {
-            Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+            msg = "Din telefon er ikke ordentlig tilsluttet. Prøv igen.";
+            Console.WriteLine(msg);
         }
 
         public void showConfirmation()
         {
-            Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+            msg = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.";
+            Console.WriteLine(msg);
         }
     }
 }
