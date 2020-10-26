@@ -13,40 +13,8 @@ namespace LadeskabTest
     [TestFixture]
     public class TestStationControl
     {
-        //Not Finished
-
+        // Finished
         #region StationControlTest
-
-        //[Test] // UDEN FAKES
-        //public void RfidDetected_stateAvailable_isCorrect()
-        //{
-        //    // Arrange
-        //    var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator());
-
-        //    // Act
-        //    uut._charger.Connected = true;
-        //    uut._state = StationControl.LadeskabState.Available;
-        //    uut.RfidDetected(1);
-
-        //    // Assert
-        //    Assert.That(uut._state == StationControl.LadeskabState.Locked);
-        //}
-
-
-        //[Test]
-        //public void RfidDetected_stateAvailable_phoneNotConnected_isCorrect()
-        //{
-        //    // Arrange
-        //    var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator());
-
-        //    // Act
-        //    uut._charger.Connected = false;
-        //    uut._state = StationControl.LadeskabState.Available;
-        //    uut.RfidDetected(1);
-
-        //    // Assert
-        //    Assert.That(uut._state == StationControl.LadeskabState.Available);
-        //}
 
         [Test]
         public void RfidDetected_Available_ConnectedTrue_isCorrect()
@@ -62,6 +30,7 @@ namespace LadeskabTest
             uut.RfidDetected(1);
 
             // Assert
+            // State changes to "locked" if the connected is true.
             Assert.That(uut._state == StationControl.LadeskabState.Locked);
         }
 
@@ -79,9 +48,9 @@ namespace LadeskabTest
             uut.RfidDetected(1);
 
             // Assert
+            // State doesn't change if connected is false.
             Assert.That(uut._state == StationControl.LadeskabState.Available);
         }
-        #endregion
 
         [Test]
         public void RfidDetected_Available_StartCharge_isCalled()
@@ -98,11 +67,10 @@ namespace LadeskabTest
 
             // Assert
             fakeCharger.Received().StartCharge();
-            Assert.That(uut._state == StationControl.LadeskabState.Locked);
         }
 
         [Test]
-        public void RfidDete_DoorOpen_isCorrect()
+        public void RfidDetected_DoorOpen_isCorrect()
         {
             // Arrange
             var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator(), new Display());
@@ -112,6 +80,7 @@ namespace LadeskabTest
             uut.RfidDetected(1);
 
             // Assert
+            // Doesn't do anything, state doesn't change
             Assert.That(uut._state == StationControl.LadeskabState.DoorOpen);
         }
 
@@ -127,7 +96,11 @@ namespace LadeskabTest
             // Act
             uut._state = StationControl.LadeskabState.Available;
             uut.RfidDetected(1);
-            //State er nu "locked" med _oldId 1, kalder med samme id
+
+            // State is "locked" with _oldId = 1
+            Assert.That(uut._state == StationControl.LadeskabState.Locked);
+
+            // Calling with same id, changing state to available
             uut.RfidDetected(1);
 
             // Assert
@@ -146,7 +119,11 @@ namespace LadeskabTest
             // Act
             uut._state = StationControl.LadeskabState.Available;
             uut.RfidDetected(1);
-            // State er nu "locked" med _oldId 1, kalder med andet id
+
+            // State is "locked" with _oldId = 1
+            Assert.That(uut._state == StationControl.LadeskabState.Locked);
+
+            // Calling with different id, doesn't change state
             uut.RfidDetected(2);
 
             // Assert
@@ -165,12 +142,15 @@ namespace LadeskabTest
             // Act
             uut._state = StationControl.LadeskabState.Available;
             uut.RfidDetected(1);
-            //State er nu "locked" med _oldId 1, kalder med samme id
+
+            // State is "locked" with _oldId = 1
+            Assert.That(uut._state == StationControl.LadeskabState.Locked);
+
+            // Calling with same id, calling StopCharge
             uut.RfidDetected(1);
 
             // Assert
             fakeCharger.Received().StopCharge();
-            Assert.That(uut._state == StationControl.LadeskabState.Available);
         }
 
         [Test]
@@ -218,5 +198,7 @@ namespace LadeskabTest
             // Assert
             Assert.That(fakeDisplay.msg == "Tryk 'R' for at indtaste RFID");
         }
+
+        #endregion
     }
 }
