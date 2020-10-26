@@ -26,18 +26,19 @@ namespace Ladeskab
         private IUsbCharger _charger;
         private int _oldId;
         private Door _door = new Door();
-        private Display _display = new Display();
-        private RFIDReader _rfidReader;
+        private Display _display;
+        //private RFIDReader _rfidReader;
         
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
         public bool dooropen;
 
-        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb)
+        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb, Display Display)
         {
             door.DoorChangedEvent += handleDoorChanged;
             rfid.RFIDChangedEvent += handleRFIDChanged;
-            this._charger = new UsbChargerSimulator();
+            this._charger = Usb;
+            this._display = Display;
         }
 
         public void handleDoorChanged(object sender, DoorEventArgs e)
@@ -55,7 +56,6 @@ namespace Ladeskab
         public void handleRFIDChanged(object sender, RFIDEventArgs e)
         {
             RfidDetected(e.RFID_ID);
-           
         }
         // Her mangler constructor
 
@@ -66,7 +66,7 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    if (_charger.Connected == true)
                     {
                         _charger.StartCharge();
                         _door.LockDoor();
@@ -82,8 +82,8 @@ namespace Ladeskab
                     else
                     {
                         _display.showConnectionError();
+                        _state = LadeskabState.Available;
                     }
-
                     break;
 
                 case LadeskabState.DoorOpen:

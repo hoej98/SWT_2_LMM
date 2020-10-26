@@ -11,7 +11,7 @@ class Program
         Display display = new Display();
         RFIDReader rfidReader = new RFIDReader();
         UsbChargerSimulator usbCharger = new UsbChargerSimulator();
-        StationControl stationControl = new StationControl(door, rfidReader, usbCharger);
+        StationControl stationControl = new StationControl(door, rfidReader, usbCharger, display);
 
         System.Console.WriteLine("Indtast 'E' for 'Exit'\n" +
                                  "Indtast 'O' for 'Open door'\n" +
