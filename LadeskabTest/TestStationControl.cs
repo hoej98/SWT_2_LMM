@@ -174,7 +174,7 @@ namespace LadeskabTest
         }
 
         [Test]
-        public void handleRfidChanged()
+        public void handleRfidChanged_isCorrect()
         {
             // Arrange
             IRFID fakeRFIDReader = Substitute.For<IRFID>();
@@ -186,6 +186,20 @@ namespace LadeskabTest
 
             // Assert
             // The event change should make a call to RfidDetected, which changes state to Locked.
+            Assert.That(uut._state == StationControl.LadeskabState.Locked);
+        }
+
+        [Test]
+        public void handleDoorChanged_DoorOpen_isCorrect()
+        {
+            // Arrange
+            IDoor fakeDoor = Substitute.For<IDoor>();
+            var uut = new StationControl(fakeDoor, new RFIDReader(), new UsbChargerSimulator());
+
+            // Act
+            fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = true});
+
+            // Assert
             Assert.That(uut._state == StationControl.LadeskabState.Locked);
         }
     }

@@ -26,18 +26,19 @@ namespace Ladeskab
         private IUsbCharger _charger;
         private int _oldId;
         private Door _door = new Door();
-        private Display _display = new Display();
-        private RFIDReader _rfidReader;
+        private Display _display;
+        //private RFIDReader _rfidReader;
         
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
         public bool dooropen;
 
-        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb)
+        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb, Display Display)
         {
             door.DoorChangedEvent += handleDoorChanged;
             rfid.RFIDChangedEvent += handleRFIDChanged;
             this._charger = Usb;
+            this._display = Display;
         }
 
         public void handleDoorChanged(object sender, DoorEventArgs e)
