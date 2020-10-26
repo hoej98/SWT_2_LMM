@@ -9,6 +9,10 @@ namespace LadeskabTest
     {
         //Not Finished
         #region StationControlTest
+
+        //arrange
+        //act
+        //assert
         #endregion
     }
 }
