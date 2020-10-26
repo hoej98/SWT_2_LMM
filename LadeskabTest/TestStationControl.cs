@@ -2,6 +2,7 @@
 using Ladeskab;
 using System;
 using DoorInterface;
+using RFIDInterface;
 using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using UsbSimulator;
 using NSubstitute;
@@ -170,6 +171,22 @@ namespace LadeskabTest
             // Assert
             fakeCharger.Received().StopCharge();
             Assert.That(uut._state == StationControl.LadeskabState.Available);
+        }
+
+        [Test]
+        public void handleRfidChanged()
+        {
+            // Arrange
+            IRFID fakeRFIDReader = Substitute.For<IRFID>();
+            var uut = new StationControl(new Door(), fakeRFIDReader, new UsbChargerSimulator());
+            uut._state = StationControl.LadeskabState.Available;
+
+            // Act
+            fakeRFIDReader.RFIDChangedEvent += Raise.EventWith(new RFIDEventArgs {RFID_ID = 5});
+
+            // Assert
+            // The event change should make a call to RfidDetected, which changes state to Locked.
+            Assert.That(uut._state == StationControl.LadeskabState.Locked);
         }
     }
 }

@@ -55,7 +55,6 @@ namespace Ladeskab
         public void handleRFIDChanged(object sender, RFIDEventArgs e)
         {
             RfidDetected(e.RFID_ID);
-           
         }
         // Her mangler constructor
 
