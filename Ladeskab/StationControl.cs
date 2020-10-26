@@ -13,7 +13,7 @@ namespace Ladeskab
     public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        private enum LadeskabState
+        public enum LadeskabState
         {
             Available,
             Locked,
@@ -21,21 +21,24 @@ namespace Ladeskab
         };
 
         // Her mangler flere member variableeee
-        private LadeskabState _state;
-        private IUsbCharger _charger = new UsbChargerSimulator();
+        public LadeskabState _state { get; set; }
+
+        private IUsbCharger _charger;
         private int _oldId;
         private Door _door = new Door();
-        private Display _display = new Display();
-        private RFIDReader _rfidReader;
+        private Display _display;
+        //private RFIDReader _rfidReader;
         
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
         public bool dooropen;
 
-        public StationControl(IDoor door, IRFID rfid)
+        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb, Display Display)
         {
             door.DoorChangedEvent += handleDoorChanged;
             rfid.RFIDChangedEvent += handleRFIDChanged;
+            this._charger = Usb;
+            this._display = Display;
         }
 
         public void handleDoorChanged(object sender, DoorEventArgs e)
@@ -53,7 +56,6 @@ namespace Ladeskab
         public void handleRFIDChanged(object sender, RFIDEventArgs e)
         {
             RfidDetected(e.RFID_ID);
-           
         }
         // Her mangler constructor
 
@@ -64,7 +66,7 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    if (_charger.Connected == true)
                     {
                         _charger.StartCharge();
                         _door.LockDoor();
@@ -80,8 +82,8 @@ namespace Ladeskab
                     else
                     {
                         _display.showConnectionError();
+                        _state = LadeskabState.Available;
                     }
-
                     break;
 
                 case LadeskabState.DoorOpen:
@@ -120,6 +122,5 @@ namespace Ladeskab
         {
             _display.showInputRfid();
         }
-
     }
 }
