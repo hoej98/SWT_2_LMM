@@ -55,7 +55,7 @@ namespace LadeskabTest
             IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
             fakeCharger.Connected.Returns(true);
 
-            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger);
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
@@ -72,7 +72,7 @@ namespace LadeskabTest
             IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
             fakeCharger.Connected.Returns(false);
 
-            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger);
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
@@ -90,7 +90,7 @@ namespace LadeskabTest
             IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
             fakeCharger.Connected.Returns(true);
 
-            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger);
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
@@ -105,7 +105,7 @@ namespace LadeskabTest
         public void RfidDete_DoorOpen_isCorrect()
         {
             // Arrange
-            var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator());
+            var uut = new StationControl(new Door(), new RFIDReader(), new UsbChargerSimulator(), new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.DoorOpen;
@@ -122,7 +122,7 @@ namespace LadeskabTest
             IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
             fakeCharger.Connected.Returns(true);
 
-            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger);
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
@@ -141,7 +141,7 @@ namespace LadeskabTest
             IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
             fakeCharger.Connected.Returns(true);
 
-            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger);
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
@@ -160,7 +160,7 @@ namespace LadeskabTest
             IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
             fakeCharger.Connected.Returns(true);
 
-            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger);
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
@@ -178,7 +178,7 @@ namespace LadeskabTest
         {
             // Arrange
             IRFID fakeRFIDReader = Substitute.For<IRFID>();
-            var uut = new StationControl(new Door(), fakeRFIDReader, new UsbChargerSimulator());
+            var uut = new StationControl(new Door(), fakeRFIDReader, new UsbChargerSimulator(), new Display());
             uut._state = StationControl.LadeskabState.Available;
 
             // Act
@@ -194,13 +194,29 @@ namespace LadeskabTest
         {
             // Arrange
             IDoor fakeDoor = Substitute.For<IDoor>();
-            var uut = new StationControl(fakeDoor, new RFIDReader(), new UsbChargerSimulator());
+            Display fakeDisplay = Substitute.For<Display>();
+            var uut = new StationControl(fakeDoor, new RFIDReader(), new UsbChargerSimulator(), fakeDisplay);
 
             // Act
             fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = true});
 
             // Assert
-            Assert.That(uut._state == StationControl.LadeskabState.Locked);
+            Assert.That(fakeDisplay.msg == "Tilslut din telefon");
+        }
+
+        [Test]
+        public void handleDoorChanged_DoorClosed_isCorrect()
+        {
+            // Arrange
+            IDoor fakeDoor = Substitute.For<IDoor>();
+            Display fakeDisplay = Substitute.For<Display>();
+            var uut = new StationControl(fakeDoor, new RFIDReader(), new UsbChargerSimulator(), fakeDisplay);
+
+            // Act
+            fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = false });
+
+            // Assert
+            Assert.That(fakeDisplay.msg == "Tryk 'R' for at indtaste RFID");
         }
     }
 }
