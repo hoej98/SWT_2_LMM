@@ -8,6 +8,16 @@ namespace DoorInterface
     public interface IDoor
     {
         event EventHandler<DoorEventArgs> DoorChangedEvent;
+
+        bool _doorLocked { get; set; }
+
+        void LockDoor();
+
+        void UnlockDoor();
+
+        void OnDoorOpen();
+
+        void OnDoorClose();
     }
 }
 
