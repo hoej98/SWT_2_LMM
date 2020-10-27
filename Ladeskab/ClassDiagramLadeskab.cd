@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ladeskab.StationControl">
+    <Position X="10.25" Y="0.5" Width="1.75" />
+    <NestedTypes>
+      <Enum Name="Ladeskab.StationControl.LadeskabState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>StationControl.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gAQBAAAACgACAAAAAAAACAAAAEAAFAAAECAAAAAAAAA=</HashCode>
+      <FileName>StationControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ladeskab.Door">
+    <Position X="4.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAACACAAAAAAAAAAAABAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>Door.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ladeskab.RFIDReader">
+    <Position X="8.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RFIDReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UsbSimulator.UsbChargerSimulator" Collapsed="true">
+    <Position X="13" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQQAAAQAAAgQAAAAAhCCAACAAAAAAEAAAAIUAAQEIA=</HashCode>
+      <FileName>UsbChargerSimulator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Ladeskab.Display">
+    <Position X="16.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAQAAAAAAAACA0ABAAAAAA=</HashCode>
+      <FileName>Display.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DoorInterface.IDoor">
+    <Position X="4.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDoor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RFIDInterface.IRFID">
+    <Position X="8.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRFIDReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="UsbSimulator.IUsbCharger" Collapsed="true">
+    <Position X="13" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAQAAAAAgAAAAAAAAAAAEAAAAAQAAAAAA=</HashCode>
+      <FileName>IUsbCharger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

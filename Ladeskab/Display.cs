@@ -10,38 +10,38 @@ namespace Ladeskab
         public string msg;
         public void showConnectPhone()
         {
-            msg = "Tilslut din telefon";
-            Console.WriteLine(msg);
+            msgee = "Tilslut din telefon";
+            Console.WriteLine(msgee);
         }
 
         public void showInputRfid()
         {
-            msg = "Tryk 'R' for at indtaste RFID";
-            Console.WriteLine(msg);
+            msgee = "Tryk 'R' for at indtaste RFID";
+            Console.WriteLine(msgee);
         }
 
         public void showRFIDError()
         {
-            msg = "Forkert RFID tag";
-            Console.WriteLine(msg);
+            msgee = "Forkert RFID tag";
+            Console.WriteLine(msgee);
         }
 
         public void showRemovePhone()
         {
-            msg = "Tag din telefon ud af skabet og luk døren";
-            Console.WriteLine(msg);
+            msgee = "Tag din telefon ud af skabet og luk døren";
+            Console.WriteLine(msgee);
         }
 
         public void showConnectionError()
         {
-            msg = "Din telefon er ikke ordentlig tilsluttet. Prøv igen.";
-            Console.WriteLine(msg);
+            msgee = "Din telefon er ikke ordentlig tilsluttet. Prøv igen.";
+            Console.WriteLine(msgee);
         }
 
         public void showConfirmation()
         {
-            msg = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.";
-            Console.WriteLine(msg);
+            msgee = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.";
+            Console.WriteLine(msgee);
         }
     }
 }
