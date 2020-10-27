@@ -95,12 +95,13 @@ namespace LadeskabTest
 
             // Act
             uut._state = StationControl.LadeskabState.Available;
+            // Call with id = 1
             uut.RfidDetected(1);
 
             // State is "locked" with _oldId = 1
             Assert.That(uut._state == StationControl.LadeskabState.Locked);
 
-            // Calling with same id, changing state to available
+            // Calling with same id, unlocking and changing state to available
             uut.RfidDetected(1);
 
             // Assert
@@ -123,7 +124,7 @@ namespace LadeskabTest
             // State is "locked" with _oldId = 1
             Assert.That(uut._state == StationControl.LadeskabState.Locked);
 
-            // Calling with different id, doesn't change state
+            // Calling with different id, stays locked and doesn't change state
             uut.RfidDetected(2);
 
             // Assert
