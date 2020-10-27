@@ -25,7 +25,7 @@ namespace Ladeskab
 
         private IUsbCharger _charger;
         private int _oldId;
-        private IDoor _door = new Door();
+        private Door _door = new Door();
         private Display _display;
         //private RFIDReader _rfidReader;
         

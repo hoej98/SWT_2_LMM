@@ -19,7 +19,7 @@ namespace LadeskabTest
             uut.showConnectPhone();
 
             //Assert
-            Assert.That(uut.msgee == "Tilslut din telefon");
+            Assert.That(uut.msg == "Tilslut din telefon");
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace LadeskabTest
             uut.showInputRfid();
 
             //Assert
-            Assert.That(uut.msgee == "Tryk 'R' for at indtaste RFID");
+            Assert.That(uut.msg == "Tryk 'R' for at indtaste RFID");
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace LadeskabTest
             uut.showRFIDError();
 
             //Assert
-            Assert.That(uut.msgee == "Forkert RFID tag");
+            Assert.That(uut.msg == "Forkert RFID tag");
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace LadeskabTest
             uut.showRemovePhone();
 
             //Assert
-            Assert.That(uut.msgee == "Tag din telefon ud af skabet og luk døren");
+            Assert.That(uut.msg == "Tag din telefon ud af skabet og luk døren");
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace LadeskabTest
             uut.showConnectionError();
 
             //Assert
-            Assert.That(uut.msgee == "Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+            Assert.That(uut.msg == "Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace LadeskabTest
             uut.showConfirmation();
 
             //Assert
-            Assert.That(uut.msgee == "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+            Assert.That(uut.msg == "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
         }
         #endregion
     }

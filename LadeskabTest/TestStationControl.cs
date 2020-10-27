@@ -181,7 +181,7 @@ namespace LadeskabTest
             fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = true});
 
             // Assert
-            Assert.That(fakeDisplay.msgee == "Tilslut din telefon");
+            Assert.That(fakeDisplay.msg == "Tilslut din telefon");
         }
 
         [Test]
@@ -196,7 +196,7 @@ namespace LadeskabTest
             fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = false });
 
             // Assert
-            Assert.That(fakeDisplay.msgee == "Tryk 'R' for at indtaste RFID");
+            Assert.That(fakeDisplay.msg == "Tryk 'R' for at indtaste RFID");
         }
 
         #endregion
