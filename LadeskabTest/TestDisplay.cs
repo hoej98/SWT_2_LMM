@@ -4,7 +4,6 @@ using System;
 
 namespace LadeskabTest
 {
-    //Tests for display
     [TestFixture]
     public class TestDisplay
     {

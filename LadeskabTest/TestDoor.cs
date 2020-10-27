@@ -56,7 +56,7 @@ namespace LadeskabTest
         public void LockDoor_IsCorrect()
         {
             // Arrange
-            IDoor uut = new Door();
+            var uut = new Door();
 
             // Act
             uut.LockDoor();
