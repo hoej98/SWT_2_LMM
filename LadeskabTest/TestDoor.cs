@@ -10,7 +10,7 @@ namespace LadeskabTest
     [TestFixture]
     public class TestDoor
     {
-        // Not Finished
+        // Finished
         #region DoorTest
         [Test]
         public void OnDoorOpen_EventFired()

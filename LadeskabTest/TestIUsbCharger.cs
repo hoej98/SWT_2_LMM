@@ -7,7 +7,7 @@ namespace LadeskabTest
     [TestFixture]
     public class TestIUsbCharger
     {
-        //Not Finished
+        // Finished
         #region IUsbCharger
         #endregion
     }
