@@ -33,26 +33,6 @@ namespace LadeskabTest
         }
 
         [Test]
-        public void OnDoorOpen_EventNotFired()
-        {
-            // Arrange
-            var uut = new Door();
-            DoorEventArgs receivedEventArgs = null;
-
-            uut.DoorChangedEvent +=
-                (o, args) =>
-                {
-                    receivedEventArgs = args;
-                };
-
-            // Act
-            // Do nothing -- event should NOT be fired
-
-            // Assert
-            Assert.That(receivedEventArgs, Is.Null);
-        }
-
-        [Test]
         public void OnDoorClose_EventFired()
         {
             // Arrange
@@ -70,26 +50,6 @@ namespace LadeskabTest
 
             // Assert
             Assert.That(receivedEventArgs, Is.Not.Null);
-        }
-
-        [Test]
-        public void OnDoorClose_EventNotFired()
-        {
-            // Arrange
-            var uut = new Door();
-            DoorEventArgs receivedEventArgs = null;
-
-            uut.DoorChangedEvent +=
-                (o, args) =>
-                {
-                    receivedEventArgs = args;
-                };
-
-            // Act
-            // Do nothing -- event should NOT be fired
-
-            // Assert
-            Assert.That(receivedEventArgs, Is.Null);
         }
 
         [Test]
