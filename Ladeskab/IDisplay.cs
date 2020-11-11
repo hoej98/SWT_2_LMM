@@ -6,8 +6,6 @@ namespace Ladeskab
 {
     public interface IDisplay
     {
-        public string msg { get; set; }
-
         public void showConnectPhone();
 
         public void showInputRfid();

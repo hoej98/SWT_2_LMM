@@ -29,8 +29,6 @@ namespace LadeskabTest
             // Assert
             Assert.That(receivedEventArgs, Is.Not.Null);
         }
-
-
         #endregion
     }
 }

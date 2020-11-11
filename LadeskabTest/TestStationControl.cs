@@ -17,7 +17,6 @@ namespace LadeskabTest
     {
         // Finished
         #region StationControlTest
-
         [Test]
         public void RfidDetected_Available_ConnectedTrue_isCorrect()
         {
@@ -240,7 +239,7 @@ namespace LadeskabTest
 
         [TestCase(6.00)]
         [TestCase(250.05)]
-        [TestCase(500.00)]
+        [TestCase(500)]
         public void chargerSurveillance_ValueLessThanFiveHundred_IsCorrect(double value)
         {
             // Arrange
@@ -276,6 +275,26 @@ namespace LadeskabTest
             fakeDisplay.Received().showChargerError();
         }
 
+        [Test]
+        public void chargerSurveillance_ValueIsNegative()
+        {
+            // Arrange
+            IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
+            fakeCharger.CurrentValue.Returns(-5);
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, fakeDisplay);
+
+            // Act
+            uut.chargeSurveillance();
+
+            // Assert
+            // Shouldn't be possible, thus no calls should be received
+            fakeDisplay.DidNotReceive().showChargerNotConnected();
+            fakeDisplay.DidNotReceive().showChargerFullyCharged();
+            fakeDisplay.DidNotReceive().showChargerChargingNormal();
+            fakeDisplay.DidNotReceive().showChargerError();
+        }
         #endregion
     }
 }

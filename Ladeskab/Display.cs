@@ -8,66 +8,54 @@ namespace Ladeskab
 {
     public class Display : IDisplay
     {
-        public string msg { get; set; }
-
         public void showConnectPhone()
         {
-            msg = "Tilslut din telefon";
-            Console.WriteLine(msg);
+            Console.WriteLine("Tilslut din telefon");
         }
 
         public void showInputRfid()
         {
-            msg = "Tryk 'R' for at indtaste RFID";
-            Console.WriteLine(msg);
+            Console.WriteLine("Tryk 'R' for at indtaste RFID");
         }
 
         public void showRFIDError()
         {
-            msg = "Forkert RFID tag";
-            Console.WriteLine(msg);
+            Console.WriteLine("Forkert RFID tag");
         }
 
         public void showRemovePhone()
         {
-            msg = "Tag din telefon ud af skabet og luk døren";
-            Console.WriteLine(msg);
+            Console.WriteLine("Tag din telefon ud af skabet og luk døren");
         }
 
         public void showConnectionError()
         {
-            msg = "Din telefon er ikke ordentlig tilsluttet. Prøv igen.";
-            Console.WriteLine(msg);
+            Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
         }
 
         public void showConfirmation()
         {
-            msg = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status";
-            Console.WriteLine(msg);
+            Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status");
         }
 
         public void showChargerNotConnected()
         {
-            msg = "Ingen telefon tilsluttet";
-            Console.WriteLine(msg);
+            Console.WriteLine("Ingen telefon tilsluttet.");
         }
 
         public void showChargerFullyCharged()
         {
-            msg = "Telefonen er ladt fuldt op. Fjern den venligst fra opladeren.";
-            Console.WriteLine(msg);
+            Console.WriteLine("Telefonen er ladt fuldt op. Fjern den venligst fra opladeren.");
         }
 
         public void showChargerChargingNormal()
         {
-            msg = "Telefon lader op.";
-            Console.WriteLine(msg);
+            Console.WriteLine("Telefon lader op.");
         }
 
         public void showChargerError()
         {
-            msg = "Fejl i opladning.";
-            Console.WriteLine(msg);
+            Console.WriteLine("Fejl i opladning.");
         }
     }
 }

@@ -132,12 +132,12 @@ namespace Ladeskab
                 _display.showChargerNotConnected();
             }
             // Telefonen er fuldt opladt, kan frakobles
-            else if (_charger.CurrentValue <= 5)
+            else if (_charger.CurrentValue > 0 && _charger.CurrentValue <= 5)
             {
                 _display.showChargerFullyCharged();
             }
             // Opladning foregår normalt
-            else if (_charger.CurrentValue <= 500)
+            else if (_charger.CurrentValue > 0 && _charger.CurrentValue <= 500)
             {
                 _display.showChargerChargingNormal();
             }

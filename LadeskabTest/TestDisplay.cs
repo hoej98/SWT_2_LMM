@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using Ladeskab;
 using System;
+using System.IO;
+using NSubstitute;
 
 namespace LadeskabTest
 {
@@ -13,79 +15,152 @@ namespace LadeskabTest
         [Test]
         public void ShowConnectPhone_IsCorrect()
         {
-            // arrange
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
             var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
 
-            //act
+            // Act
             uut.showConnectPhone();
 
-            //Assert
-            Assert.That(uut.msg == "Tilslut din telefon");
+            // Assert - Trim() to remove \n and \r and the end of the string from the writer.
+            Assert.AreEqual("Tilslut din telefon", fakeTextWriter.ToString().Trim());
         }
 
         [Test]
         public void ShowInputRfid_IsCorrect()
         {
-            // arrange
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
             var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
 
-            //act
+            // Act
             uut.showInputRfid();
 
-            //Assert
-            Assert.That(uut.msg == "Tryk 'R' for at indtaste RFID");
+            // Assert
+            Assert.AreEqual("Tryk 'R' for at indtaste RFID", fakeTextWriter.ToString().Trim());
         }
 
         [Test]
         public void ShowRFIDError_IsCorrect()
         {
-            // arrange
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
             var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
 
-            //act
+            // Act
             uut.showRFIDError();
 
-            //Assert
-            Assert.That(uut.msg == "Forkert RFID tag");
+            // Assert
+            Assert.AreEqual("Forkert RFID tag", fakeTextWriter.ToString().Trim());
         }
 
         [Test]
         public void ShowRemovePhone_IsCorrect()
         {
-            // arrange
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
             var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
 
-            //act
+            // Act
             uut.showRemovePhone();
 
-            //Assert
-            Assert.That(uut.msg == "Tag din telefon ud af skabet og luk døren");
+            // Assert
+            Assert.AreEqual("Tag din telefon ud af skabet og luk døren", fakeTextWriter.ToString().Trim());
         }
 
         [Test]
         public void ShowConnectionError_IsCorrect()
         {
-            // arrange
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
             var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
 
-            //act
+            // Act
             uut.showConnectionError();
 
-            //Assert
-            Assert.That(uut.msg == "Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+            // Assert
+            Assert.AreEqual("Din telefon er ikke ordentlig tilsluttet. Prøv igen.", fakeTextWriter.ToString().Trim());
         }
 
         [Test]
         public void ShowConfirmation_IsCorrect()
         {
-            // arrange
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
             var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
 
-            //act
+            // Act
             uut.showConfirmation();
 
-            //Assert
-            Assert.That(uut.msg == "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status");
+            // Assert
+            Assert.AreEqual("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status",
+                fakeTextWriter.ToString().Trim());
+        }
+
+        [Test]
+        public void ShowChargerNotConnected_IsCorrect()
+        {
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
+            var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
+
+            // Act
+            uut.showChargerNotConnected();
+
+            // Assert
+            Assert.AreEqual("Ingen telefon tilsluttet.", fakeTextWriter.ToString().Trim());
+        }
+
+        [Test]
+        public void ShowChargerFullyCharged_IsCorrect()
+        {
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
+            var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
+
+            // Act
+            uut.showChargerFullyCharged();
+
+            // Assert
+            Assert.AreEqual("Telefonen er ladt fuldt op. Fjern den venligst fra opladeren.", fakeTextWriter.ToString().Trim());
+        }
+
+        [Test]
+        public void ShowChargerChargingNormal_IsCorrect()
+        {
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
+            var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
+
+            // Act
+            uut.showChargerChargingNormal();
+
+            // Assert
+            Assert.AreEqual("Telefon lader op.", fakeTextWriter.ToString().Trim());
+        }
+
+        [Test]
+        public void ShowChargerError_IsCorrect()
+        {
+            // Arrange - Makes a display-uut and sets Console to a new TextWriter, which we can compare the string to
+            var uut = new Display();
+            TextWriter fakeTextWriter = new StringWriter();
+            Console.SetOut(fakeTextWriter);
+
+            // Act
+            uut.showChargerError();
+
+            // Assert
+            Assert.AreEqual("Fejl i opladning.", fakeTextWriter.ToString().Trim());
         }
         #endregion
     }
