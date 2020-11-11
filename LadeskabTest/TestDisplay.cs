@@ -99,7 +99,7 @@ namespace LadeskabTest
             uut.showConfirmation();
 
             // Assert
-            Assert.AreEqual("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status",
+            Assert.AreEqual("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op",
                 fakeTextWriter.ToString().Trim());
         }
 
@@ -160,7 +160,7 @@ namespace LadeskabTest
             uut.showChargerError();
 
             // Assert
-            Assert.AreEqual("Fejl i opladning.", fakeTextWriter.ToString().Trim());
+            Assert.AreEqual("Fejl i opladning! Fjern straks telefonen.", fakeTextWriter.ToString().Trim());
         }
         #endregion
     }

@@ -295,6 +295,22 @@ namespace LadeskabTest
             fakeDisplay.DidNotReceive().showChargerChargingNormal();
             fakeDisplay.DidNotReceive().showChargerError();
         }
+
+        [Test]
+        public void chargerSurveillance_StopCharge_isCorrect()
+        {
+            // Arrange
+            IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
+            fakeCharger.CurrentValue.Returns(3);
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, new Display());
+
+            // Act
+            uut.chargeSurveillance();
+
+            // Assert
+            fakeCharger.Received().StopCharge();
+        }
         #endregion
     }
 }

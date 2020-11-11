@@ -35,7 +35,7 @@ namespace Ladeskab
 
         public void showConfirmation()
         {
-            Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status");
+            Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op");
         }
 
         public void showChargerNotConnected()
@@ -55,7 +55,7 @@ namespace Ladeskab
 
         public void showChargerError()
         {
-            Console.WriteLine("Fejl i opladning.");
+            Console.WriteLine("Fejl i opladning! Fjern straks telefonen.");
         }
     }
 }

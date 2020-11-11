@@ -24,14 +24,11 @@ namespace Ladeskab
         public LadeskabState _state { get; set; }
 
         private IUsbCharger _charger;
-        private int _oldId;
-        private Door _door = new Door();
         private IDisplay _display;
-        //private RFIDReader _rfidReader;
-        
+        private IDoor _door = new Door();
+        private ILog _log = new Log("logfile.txt");
 
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        public bool dooropen;
+        private int _oldId;
 
         public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb, IDisplay Display)
         {
@@ -57,7 +54,6 @@ namespace Ladeskab
         {
             RfidDetected(e.RFID_ID);
         }
-        // Her mangler constructor
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
         public void RfidDetected(int id)
@@ -71,6 +67,7 @@ namespace Ladeskab
                         _charger.StartCharge();
                         _door.LockDoor();
                         _oldId = id;
+                        _log.writeLog(id);
                         //using (var writer = File.AppendText(logFile))
                         //{
                         //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
@@ -96,10 +93,12 @@ namespace Ladeskab
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+
+                        _log.writeLog(id);
+                        //using (var writer = File.AppendText(logFile))
+                        //{
+                        //    writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
+                        //}
 
                         _display.showRemovePhone();
                         _state = LadeskabState.Available;
@@ -135,6 +134,7 @@ namespace Ladeskab
             else if (_charger.CurrentValue > 0 && _charger.CurrentValue <= 5)
             {
                 _display.showChargerFullyCharged();
+                _charger.StopCharge();
             }
             // Opladning foregår normalt
             else if (_charger.CurrentValue > 0 && _charger.CurrentValue <= 500)
