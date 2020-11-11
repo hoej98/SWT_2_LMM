@@ -23,7 +23,10 @@ class Program
         do
         {
             string input;
-            Console.WriteLine("Indtast E, O, C, K, R: ");
+            //Console.WriteLine("Indtast E, O, C, K, R: ");
+
+            stationControl.chargeSurveillance();
+
             input = Console.ReadLine();
             if (string.IsNullOrEmpty(input)) continue;
 

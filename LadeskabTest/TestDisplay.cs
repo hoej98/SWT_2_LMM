@@ -85,7 +85,7 @@ namespace LadeskabTest
             uut.showConfirmation();
 
             //Assert
-            Assert.That(uut.msg == "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+            Assert.That(uut.msg == "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status");
         }
         #endregion
     }

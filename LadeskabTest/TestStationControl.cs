@@ -1,11 +1,13 @@
 ﻿using NUnit.Framework;
 using Ladeskab;
 using System;
+using System.Linq.Expressions;
 using DoorInterface;
 using RFIDInterface;
 using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using UsbSimulator;
 using NSubstitute;
+using NSubstitute.Exceptions;
 using NSubstitute.Extensions;
 
 namespace LadeskabTest
@@ -175,14 +177,14 @@ namespace LadeskabTest
         {
             // Arrange
             IDoor fakeDoor = Substitute.For<IDoor>();
-            Display fakeDisplay = Substitute.For<Display>();
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
             var uut = new StationControl(fakeDoor, new RFIDReader(), new UsbChargerSimulator(), fakeDisplay);
 
             // Act
             fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = true});
 
             // Assert
-            Assert.That(fakeDisplay.msg == "Tilslut din telefon");
+            fakeDisplay.Received().showConnectPhone();
         }
 
         [Test]
@@ -190,14 +192,88 @@ namespace LadeskabTest
         {
             // Arrange
             IDoor fakeDoor = Substitute.For<IDoor>();
-            Display fakeDisplay = Substitute.For<Display>();
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
             var uut = new StationControl(fakeDoor, new RFIDReader(), new UsbChargerSimulator(), fakeDisplay);
 
             // Act
             fakeDoor.DoorChangedEvent += Raise.EventWith(new DoorEventArgs() { DoorOpen = false });
 
             // Assert
-            Assert.That(fakeDisplay.msg == "Tryk 'R' for at indtaste RFID");
+            fakeDisplay.Received().showInputRfid();
+        }
+
+        [Test]
+        public void chargerSurveillance_ValueIsZero_IsCorrect()
+        {
+            // Arrange
+            IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
+            fakeCharger.CurrentValue.Returns(0);
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, fakeDisplay);
+
+            // Act
+            uut.chargeSurveillance();
+
+            // Assert
+            fakeDisplay.Received().showChargerNotConnected();
+        }
+
+        [TestCase(1)]
+        [TestCase(3.5)]
+        [TestCase(5)]
+        public void chargerSurveillance_ValueLessThanFive_IsCorrect(double value)
+        {
+            // Arrange
+            IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
+            fakeCharger.CurrentValue.Returns(value);
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, fakeDisplay);
+
+            // Act
+            uut.chargeSurveillance();
+
+            // Assert
+            fakeDisplay.Received().showChargerFullyCharged();
+        }
+
+        [TestCase(6.00)]
+        [TestCase(250.05)]
+        [TestCase(500.00)]
+        public void chargerSurveillance_ValueLessThanFiveHundred_IsCorrect(double value)
+        {
+            // Arrange
+            IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
+            fakeCharger.CurrentValue.Returns(value);
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, fakeDisplay);
+
+            // Act
+            uut.chargeSurveillance();
+
+            // Assert
+            fakeDisplay.Received().showChargerChargingNormal();
+        }
+
+        [TestCase(500.01)]
+        [TestCase(750)]
+        [TestCase(1000)]
+        public void chargerSurveillance_ValueOverFiveHundred_IsCorrect(double value)
+        {
+            // Arrange
+            IUsbCharger fakeCharger = Substitute.For<IUsbCharger>();
+            fakeCharger.CurrentValue.Returns(value);
+            IDisplay fakeDisplay = Substitute.For<IDisplay>();
+
+            var uut = new StationControl(new Door(), new RFIDReader(), fakeCharger, fakeDisplay);
+
+            // Act
+            uut.chargeSurveillance();
+
+            // Assert
+            fakeDisplay.Received().showChargerError();
         }
 
         #endregion

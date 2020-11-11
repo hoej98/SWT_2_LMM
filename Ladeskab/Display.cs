@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace Ladeskab
 {
-    public class Display
+    public class Display : IDisplay
     {
-        public string msg;
+        public string msg { get; set; }
+
         public void showConnectPhone()
         {
             msg = "Tilslut din telefon";
@@ -40,7 +42,31 @@ namespace Ladeskab
 
         public void showConfirmation()
         {
-            msg = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.";
+            msg = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op og 'Enter' for at se status";
+            Console.WriteLine(msg);
+        }
+
+        public void showChargerNotConnected()
+        {
+            msg = "Ingen telefon tilsluttet";
+            Console.WriteLine(msg);
+        }
+
+        public void showChargerFullyCharged()
+        {
+            msg = "Telefonen er ladt fuldt op. Fjern den venligst fra opladeren.";
+            Console.WriteLine(msg);
+        }
+
+        public void showChargerChargingNormal()
+        {
+            msg = "Telefon lader op.";
+            Console.WriteLine(msg);
+        }
+
+        public void showChargerError()
+        {
+            msg = "Fejl i opladning.";
             Console.WriteLine(msg);
         }
     }

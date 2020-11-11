@@ -5,7 +5,8 @@ namespace UsbSimulator
 {
     public class UsbChargerSimulator : IUsbCharger
     {
-        // Constants mikkel du er lort håber ikke du kan pull det her
+        // "Constants mikkel du er lort håber ikke du kan pull det her"
+        // Denne kommentar var til at teste github og jenkins i starten, vi glemte at slette den - ups
         private const double MaxCurrent = 500.0; // mA
         private const double FullyChargedCurrent = 2.5; // mA
         private const double OverloadCurrent = 750; // mA

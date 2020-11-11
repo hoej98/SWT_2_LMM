@@ -26,14 +26,14 @@ namespace Ladeskab
         private IUsbCharger _charger;
         private int _oldId;
         private Door _door = new Door();
-        private Display _display;
+        private IDisplay _display;
         //private RFIDReader _rfidReader;
         
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
         public bool dooropen;
 
-        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb, Display Display)
+        public StationControl(IDoor door, IRFID rfid, IUsbCharger Usb, IDisplay Display)
         {
             door.DoorChangedEvent += handleDoorChanged;
             rfid.RFIDChangedEvent += handleRFIDChanged;
@@ -71,10 +71,10 @@ namespace Ladeskab
                         _charger.StartCharge();
                         _door.LockDoor();
                         _oldId = id;
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                        //using (var writer = File.AppendText(logFile))
+                        //{
+                        //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
+                        //}
 
                         _display.showConfirmation();
                         _state = LadeskabState.Locked;
@@ -121,6 +121,31 @@ namespace Ladeskab
         public void DoorClosedMessage()
         {
             _display.showInputRfid();
+        }
+
+        // Overvågning af ladestrøm
+        public void chargeSurveillance()
+        {
+            // Ladning ikke startet / Ingen forbindele til telefon
+            if (_charger.CurrentValue == 0)
+            {
+                _display.showChargerNotConnected();
+            }
+            // Telefonen er fuldt opladt, kan frakobles
+            else if (_charger.CurrentValue <= 5)
+            {
+                _display.showChargerFullyCharged();
+            }
+            // Opladning foregår normalt
+            else if (_charger.CurrentValue <= 500)
+            {
+                _display.showChargerChargingNormal();
+            }
+            // Der er noget galt, frakoble telefon
+            else if (_charger.CurrentValue > 500)
+            {
+                _display.showChargerError();
+            }
         }
     }
 }
